@@ -81,8 +81,22 @@ public class MainActivity extends FlutterActivity {
     private static final String COLUMN_ASPECT_RATIO = "aspect_ratio";
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        WebWallpaperView.startAll();
+    }
+
+    @Override
+    protected void onStop() {
+        WebWallpaperView.stopAll();
+        super.onStop();
+    }
+
+    @Override
     public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
         super.configureFlutterEngine(flutterEngine);
+        flutterEngine.getPlatformViewsController().getRegistry()
+                .registerViewFactory(WebWallpaperView.VIEW_TYPE, new WebWallpaperView.Factory());
 
         BinaryMessenger messenger = flutterEngine.getDartExecutor().getBinaryMessenger();
 
