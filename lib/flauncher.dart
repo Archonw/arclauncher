@@ -37,6 +37,7 @@ import 'package:flauncher/widgets/dock_contour_painter.dart';
 import 'package:flauncher/widgets/launcher_alternative_view.dart';
 import 'package:flauncher/widgets/focus_aware_app_bar.dart';
 import 'package:flauncher/widgets/wallpaper_video_background.dart';
+import 'package:flauncher/widgets/wallpaper_web_background.dart';
 import 'package:flauncher/widgets/watch_next_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -122,7 +123,7 @@ class _FLauncherState extends State<FLauncher> with WidgetsBindingObserver {
                       duration: const Duration(milliseconds: 1500),
                       child: hasHeroBackdrop
                           ? const SizedBox.shrink(key: ValueKey('occluded_wallpaper'))
-                          : _wallpaper(context, wallpaperService),
+                          : _wallpaper(context, wallpaperService, settingsService),
                     ),
                     // Hero items crossfade once baked simultaneously with dock blur.
                     AnimatedSwitcher(
@@ -193,7 +194,7 @@ class _FLauncherState extends State<FLauncher> with WidgetsBindingObserver {
             selector: (_, launcherState, settings, wallpaperService) => (
               launcherState.appGridFocused,
               settings.backgroundBlurDisabled,
-              wallpaperService.wallpaperVideoFile != null,
+              wallpaperService.wallpaperVideoFile != null || settings.webWallpaperUrl.isNotEmpty,
             ),
             builder: (_, data, __) {
               final (appGridFocused, blurDisabled, hasVideoWallpaper) = data;
@@ -605,9 +606,18 @@ class _FLauncherState extends State<FLauncher> with WidgetsBindingObserver {
     );
   }
 
-  Widget _wallpaper(BuildContext context, WallpaperService wallpaperService) {
+  Widget _wallpaper(BuildContext context, WallpaperService wallpaperService, SettingsService settingsService) {
     final screenSize = MediaQuery.sizeOf(context);
     final dpr = MediaQuery.devicePixelRatioOf(context);
+    final webUrl = settingsService.webWallpaperUrl;
+    if (webUrl.isNotEmpty) {
+      return SizedBox(
+        key: const ValueKey("background_web"),
+        width: screenSize.width,
+        height: screenSize.height,
+        child: WallpaperWebBackground(url: webUrl),
+      );
+    }
     final videoFile = wallpaperService.wallpaperVideoFile;
     if (videoFile != null) {
       return SizedBox(

@@ -195,4 +195,18 @@ void main() async {
       expect(sharedPreferences.getBool("watch_next_hide_programs_without_images"), isFalse);
     });
   });
+
+  test("setWebWallpaperUrl trims and adds a scheme when missing", () async {
+    SharedPreferencesStorePlatform.instance = InMemorySharedPreferencesStore.empty();
+    final settingsService = SettingsService(await SharedPreferences.getInstance());
+
+    await settingsService.setWebWallpaperUrl(" 192.168.178.115/RemoteFrame ");
+    expect(settingsService.webWallpaperUrl, "http://192.168.178.115/RemoteFrame");
+
+    await settingsService.setWebWallpaperUrl("https://example.com");
+    expect(settingsService.webWallpaperUrl, "https://example.com");
+
+    await settingsService.setWebWallpaperUrl("  ");
+    expect(settingsService.webWallpaperUrl, "");
+  });
 }

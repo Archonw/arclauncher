@@ -369,6 +369,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get video => 'Video';
 
   @override
+  String get webWallpaper => 'Trang web';
+
+  @override
+  String get webWallpaperUrl => 'URL trang web';
+
+  @override
+  String get webWallpaperUrlHelp =>
+      'Hiển thị phía sau màn hình chính thay cho hình nền. Để trống để tắt.';
+
+  @override
   String get pickDayVideoWallpaper => 'Chọn video nền ban ngày';
 
   @override

@@ -768,6 +768,24 @@ abstract class AppLocalizations {
   /// **'Video'**
   String get video;
 
+  /// No description provided for @webWallpaper.
+  ///
+  /// In en, this message translates to:
+  /// **'Web page'**
+  String get webWallpaper;
+
+  /// No description provided for @webWallpaperUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Web page URL'**
+  String get webWallpaperUrl;
+
+  /// No description provided for @webWallpaperUrlHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown behind the home screen instead of the wallpaper. Leave empty to disable.'**
+  String get webWallpaperUrlHelp;
+
   /// No description provided for @pickDayVideoWallpaper.
   ///
   /// In en, this message translates to:

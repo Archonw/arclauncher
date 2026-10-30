@@ -1434,6 +1434,17 @@ class MockAppsService extends _i1.Mock implements _i16.AppsService {
       ) as _i9.Future<void>);
 
   @override
+  _i9.Future<void> deleteCategory(_i3.Category? category) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteCategory,
+          [category],
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
+
+  @override
   void moveSectionInMemory(
     int? oldIndex,
     int? newIndex,
@@ -1477,6 +1488,23 @@ class MockAppsService extends _i1.Mock implements _i16.AppsService {
       ) as _i9.Future<void>);
 
   @override
+  _i9.Future<void> moveCategory(
+    int? oldIndex,
+    int? newIndex,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #moveCategory,
+          [
+            oldIndex,
+            newIndex,
+          ],
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
+
+  @override
   _i9.Future<void> hideApplication(_i17.App? application) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1492,6 +1520,17 @@ class MockAppsService extends _i1.Mock implements _i16.AppsService {
       (super.noSuchMethod(
         Invocation.method(
           #showApplication,
+          [application],
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
+
+  @override
+  _i9.Future<void> unHideApplication(_i17.App? application) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #unHideApplication,
           [application],
         ),
         returnValue: _i9.Future<void>.value(),
@@ -1917,6 +1956,19 @@ class MockSettingsService extends _i1.Mock implements _i18.SettingsService {
         returnValueForMissingStub: _i19.dummyValue<String>(
           this,
           Invocation.getter(#redditSort),
+        ),
+      ) as String);
+
+  @override
+  String get webWallpaperUrl => (super.noSuchMethod(
+        Invocation.getter(#webWallpaperUrl),
+        returnValue: _i19.dummyValue<String>(
+          this,
+          Invocation.getter(#webWallpaperUrl),
+        ),
+        returnValueForMissingStub: _i19.dummyValue<String>(
+          this,
+          Invocation.getter(#webWallpaperUrl),
         ),
       ) as String);
 
@@ -2387,6 +2439,16 @@ class MockSettingsService extends _i1.Mock implements _i18.SettingsService {
         Invocation.method(
           #setRedditSort,
           [sort],
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
+
+  @override
+  _i9.Future<void> setWebWallpaperUrl(String? url) => (super.noSuchMethod(
+        Invocation.method(
+          #setWebWallpaperUrl,
+          [url],
         ),
         returnValue: _i9.Future<void>.value(),
         returnValueForMissingStub: _i9.Future<void>.value(),

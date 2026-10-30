@@ -114,6 +114,22 @@ class WallpaperPanelPage extends StatelessWidget {
                   }
                 },
               ),
+              Consumer<SettingsService>(
+                builder: (context, settings, _) {
+                  final url = settings.webWallpaperUrl;
+                  return FocusableSettingsTile(
+                    leading: const Icon(Icons.language),
+                    title: Text(localizations.webWallpaper),
+                    trailing: Flexible(
+                      child: Text(url.isEmpty ? localizations.unsplashNotSet : url, overflow: TextOverflow.ellipsis),
+                    ),
+                    onPressed: () async {
+                      final value = await _askUrl(context, localizations, url);
+                      if (value != null) await settings.setWebWallpaperUrl(value);
+                    },
+                  );
+                },
+              ),
               FocusableSettingsTile(
                 leading: const Icon(Icons.slideshow),
                 title: Text(localizations.unsplashSlideshow),
@@ -130,6 +146,25 @@ class WallpaperPanelPage extends StatelessWidget {
       ],
     );
   }
+
+  Future<String?> _askUrl(BuildContext context, AppLocalizations localizations, String initialValue) =>
+      showDialog<String>(
+        context: context,
+        builder: (context) => SimpleDialog(
+          insetPadding: const EdgeInsets.only(bottom: 120),
+          contentPadding: const EdgeInsets.all(24),
+          title: Text(localizations.webWallpaperUrl),
+          children: [
+            Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(localizations.webWallpaperUrlHelp)),
+            TextFormField(
+              autofocus: true,
+              initialValue: initialValue,
+              keyboardType: TextInputType.url,
+              onFieldSubmitted: (value) => Navigator.of(context).pop(value),
+            ),
+          ],
+        ),
+      );
 
   Future<void> _pickWallpaper(
     BuildContext context,

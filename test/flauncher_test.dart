@@ -473,6 +473,7 @@ SettingsService mkSettingsService() {
   when(settingsService.appHighlightAnimationEnabled).thenReturn(true);
   when(settingsService.showAppNamesBelowIcons).thenReturn(true);
   when(settingsService.backgroundBlurDisabled).thenReturn(false);
+  when(settingsService.webWallpaperUrl).thenReturn("");
   when(settingsService.showWatchNextSection).thenReturn(false);
   when(settingsService.watchNextBigPictureMode).thenReturn(false);
   when(settingsService.watchNextHideProgramsWithoutImages).thenReturn(false);

@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   video_player: ^2.9.5
   http: ^1.2.2
+  webview_flutter: ^4.10.0
+  webview_flutter_android: ^4.0.0
 
 dev_dependencies:
   flutter_test:

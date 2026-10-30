@@ -372,6 +372,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get video => 'Vídeo';
 
   @override
+  String get webWallpaper => 'Web page';
+
+  @override
+  String get webWallpaperUrl => 'Web page URL';
+
+  @override
+  String get webWallpaperUrlHelp =>
+      'Shown behind the home screen instead of the wallpaper. Leave empty to disable.';
+
+  @override
   String get pickDayVideoWallpaper => 'Elegir vídeo de día';
 
   @override

@@ -398,6 +398,16 @@ class SettingsService extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// URL of a web page shown as the home screen background; empty disables it.
+  String get webWallpaperUrl => _sharedPreferences.getString("web_wallpaper_url") ?? "";
+
+  Future<void> setWebWallpaperUrl(String url) async {
+    final trimmed = url.trim();
+    final normalized = trimmed.isEmpty || trimmed.contains("://") ? trimmed : "http://$trimmed";
+    await _sharedPreferences.setString("web_wallpaper_url", normalized);
+    notifyListeners();
+  }
+
   String get redditClientId => _sharedPreferences.getString("reddit_client_id") ?? "";
 
   Future<void> setRedditClientId(String clientId) async {
